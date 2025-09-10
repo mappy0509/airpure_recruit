@@ -6,7 +6,7 @@
     <title>AIRPure - 中洲ホストクラブ求人</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Shippori+Mincho:wght@700;800&display=swap" rel="stylesheet">
     <!-- Font Awesome (for icons) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -21,6 +21,11 @@
             --color-text: #F0F0F0;
             /* Swiperのナビゲーションカラーを金色に設定 */
             --swiper-theme-color: var(--color-gold);
+        }
+
+        /* 追加: 特定のテキストの改行を防ぐためのヘルパークラス */
+        .no-wrap {
+            white-space: nowrap;
         }
 
         html {
@@ -502,7 +507,10 @@
 
     <!-- 1. ファーストビュー -->
     <header id="hero">
-        <h1 class="main-catchphrase">職業、イケメン。<br>はじめませんか？</h1>
+        <h1 class="main-catchphrase">
+            <!-- ↓ 変更点: このspanタグで囲むことで、この部分の改行を防ぎます -->
+            <span class="no-wrap">職業、イケメン。</span><br>はじめませんか？
+        </h1>
         <p class="sub-catchphrase">
             ただ稼ぐだけじゃない。人としての魅力を磨き、人間力で未来を掴む。<br>
             中洲から全国へ。未経験の君が主役になれる場所が、ここにある。
@@ -521,11 +529,11 @@
                 <!-- Swiper -->
                 <div class="swiper mySwiper animate-on-scroll">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide"><img src="img/gallery-1.JPG" alt="店舗画像1"></div>
-                        <div class="swiper-slide"><img src="img/gallery-2.JPG" alt="店舗画像2"></div>
-                        <div class="swiper-slide"><img src="img/gallery-3.JPG" alt="店舗画像3"></div>
-                        <div class="swiper-slide"><img src="img/gallery-4.JPG" alt="店舗画像4"></div>
-                        <div class="swiper-slide"><img src="img/gallery-5.JPG" alt="店舗画像5"></div>
+                        <div class="swiper-slide"><img src="img/gallery-1.jpg" alt="店舗画像1"></div>
+                        <div class="swiper-slide"><img src="img/gallery-2.jpg" alt="店舗画像2"></div>
+                        <div class="swiper-slide"><img src="img/gallery-3.jpg" alt="店舗画像3"></div>
+                        <div class="swiper-slide"><img src="img/gallery-4.jpg" alt="店舗画像4"></div>
+                        <div class="swiper-slide"><img src="img/gallery-5.jpg" alt="店舗画像5"></div>
                     </div>
                     <!-- ページネーション -->
                     <div class="swiper-pagination"></div>
