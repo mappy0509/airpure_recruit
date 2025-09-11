@@ -114,15 +114,15 @@
             color: #fff;
         }
         #hero .main-catchphrase {
-            /* clamp(最小値, 推奨値, 最大値) でフォントサイズを可変に */
-            font-size: clamp(2.8rem, 10vw, 4.5rem);
+            /* clamp()の最小値を調整してiPhone SEでも見切れないように */
+            font-size: clamp(2.2rem, 10vw, 4.5rem);
             line-height: 1.2;
             text-shadow: 0 0 25px rgba(0,0,0,1);
             margin-bottom: 20px;
         }
         #hero .sub-catchphrase {
             font-family: 'Noto Sans JP', sans-serif;
-            font-size: clamp(1rem, 4vw, 1.2rem);
+            font-size: clamp(0.9rem, 4vw, 1.2rem); /* 最小値を調整 */
             font-weight: 300;
             margin: 20px 0 40px;
             max-width: 650px;
@@ -146,15 +146,15 @@
         
         /* --- セクション共通スタイル --- */
         .section-title {
-            /* clamp()でフォントサイズを可変にし、はみ出しを防ぐ */
-            font-size: clamp(2rem, 8vw, 2.8rem);
+            /* clamp()の最小値を調整してiPhone SEでも見切れないように */
+            font-size: clamp(1.8rem, 7vw, 2.8rem);
             margin-bottom: 20px;
             color: var(--color-gold);
         }
         
         .section-subtitle {
-             /* clamp()でフォントサイズを可変に */
-            font-size: clamp(1.2rem, 5vw, 1.5rem);
+             /* clamp()の最小値を調整 */
+            font-size: clamp(1.1rem, 4.5vw, 1.5rem);
             margin-bottom: 40px;
         }
 
@@ -580,7 +580,7 @@
         <!-- 5. 未経験からのサクセスストーリー -->
         <section id="success-stories">
             <div class="container">
-                <h2 class="section-title animate-on-scroll">未経験だった僕たちが、<br>ここで輝けた理由。</h2>
+                <h2 class="section-title animate-on-scroll">未経験だった僕達が<br>ここで輝けた理由。</h2>
                 <div class="stories-grid">
                     <div class="story-card animate-on-scroll">
                         <img src="img/cast-ai.jpg" alt="藍">
