@@ -16,19 +16,19 @@
     <style>
         /* --- 基本スタイル --- */
         :root {
-            /* 新しい配色パターン */
-            --color-primary: #3B82F6; /* 爽やかなスカイブルー */
-            --color-primary-dark: #2563EB; /* ホバー用の濃いブルー */
-            --color-accent: #F59E0B; /* アクセントのサニーイエロー */
-            --color-background: #F9FAFB; /* 明るい背景色 (オフホワイト) */
-            --color-surface: #FFFFFF;    /* カードなどの表面色 (白) */
-            --color-text-primary: #1F2937; /* メインのテキスト色 (ダークグレー) */
-            --color-text-secondary: #4B5563; /* サブのテキスト色 (グレー) */
-            --color-border: #E5E7EB;      /* 枠線の色 */
-            --swiper-theme-color: var(--color-primary); /* Swiperのナビゲーションカラー */
+            /* 新しい配色パターン (華やか・ダークテーマ) */
+            --color-primary: #3B82F6;       /* プライマリ (ブルー) */
+            --color-accent-pink: #EC4899;   /* アクセント (マゼンタピンク) */
+            --color-accent-yellow: #F59E0B; /* アクセント (サニーイエロー) */
+            --color-background-start: #111827; /* 背景グラデーション開始 (濃紺) */
+            --color-background-end: #1D2B64;   /* 背景グラデーション終了 (紺) */
+            --color-surface: rgba(255, 255, 255, 0.05); /* カード表面色 (グラスモーフィズム) */
+            --color-text-primary: #F9FAFB;   /* メインテキスト (オフホワイト) */
+            --color-text-secondary: #D1D5DB; /* サブテキスト (ライトグレー) */
+            --color-border: rgba(255, 255, 255, 0.1); /* 枠線 */
+            --swiper-theme-color: var(--color-primary);
         }
 
-        /* 特定のテキストの改行を防ぐためのヘルパークラス */
         .no-wrap {
             white-space: nowrap;
         }
@@ -39,8 +39,8 @@
 
         body {
             font-family: 'Noto Sans JP', sans-serif;
-            background-color: var(--color-background);
-            color: var(--color-text-primary); /* テキスト色を変更 */
+            background: linear-gradient(180deg, var(--color-background-start) 0%, var(--color-background-end) 100%);
+            color: var(--color-text-primary);
             margin: 0;
             line-height: 1.8;
             overflow-x: hidden;
@@ -68,20 +68,17 @@
 
         section {
             overflow: hidden;
+            position: relative;
         }
         
-        section:nth-of-type(even) {
-            background-color: var(--color-surface);
-        }
-
         /* --- CTAボタン --- */
         .cta-button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            background: linear-gradient(145deg, var(--color-primary), var(--color-primary-dark));
-            color: var(--color-surface); /* テキスト色を白に変更 */
+            background: linear-gradient(145deg, var(--color-accent-pink), var(--color-primary));
+            color: #FFFFFF;
             font-family: 'Noto Sans JP', sans-serif;
             font-size: 18px;
             font-weight: 700;
@@ -90,23 +87,25 @@
             border-radius: 50px;
             margin: 10px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(236, 72, 153, 0.4);
             border: none;
         }
 
         .cta-button:hover {
             transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3); /* 影の色を青系に変更 */
+            box-shadow: 0 8px 30px rgba(236, 72, 153, 0.5);
         }
 
         .cta-button.secondary {
              background: transparent;
              border: 2px solid var(--color-primary);
              color: var(--color-primary);
+             box-shadow: none;
         }
         .cta-button.secondary:hover {
             background: var(--color-primary);
             color: var(--color-surface);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
         }
 
 
@@ -120,13 +119,13 @@
             align-items: center;
             text-align: center;
             padding: 20px;
-            background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('img/hero-bg.jpg') no-repeat center center/cover;
-            color: var(--color-text-primary); /* テキスト色をダークグレーに変更 */
+            background: linear-gradient(rgba(17, 24, 39, 0.8), rgba(29, 43, 100, 0.8)), url('img/hero-bg.jpg') no-repeat center center/cover;
+            color: var(--color-text-primary);
         }
         #hero .main-catchphrase {
             font-size: clamp(2.2rem, 10vw, 4.5rem);
             line-height: 1.2;
-            text-shadow: none; /* 白背景なのでテキストシャドウは不要に */
+            text-shadow: 0 0 15px rgba(236, 72, 153, 0.5);
             margin-bottom: 20px;
         }
         #hero .sub-catchphrase {
@@ -135,7 +134,7 @@
             font-weight: 300;
             margin: 20px 0 40px;
             max-width: 650px;
-            text-shadow: none;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
             color: var(--color-text-secondary);
         }
         #hero .authorities {
@@ -146,26 +145,33 @@
             justify-content: center;
         }
         #hero .authority-item {
-            background-color: rgba(255,255,255,0.8);
+            background: var(--color-surface);
+            backdrop-filter: blur(10px);
             padding: 8px 20px;
             border-radius: 5px;
-            border: 1px solid var(--color-accent);
-            backdrop-filter: blur(5px);
+            border: 1px solid var(--color-accent-yellow);
             font-weight: bold;
-            color: var(--color-accent);
+            color: var(--color-accent-yellow);
+            text-shadow: 0 0 5px rgba(245, 158, 11, 0.5);
         }
         
         /* --- セクション共通スタイル --- */
         .section-title {
             font-size: clamp(1.8rem, 7vw, 2.8rem);
             margin-bottom: 20px;
-            color: var(--color-primary);
+            color: var(--color-text-primary);
+            text-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
         }
-        
+        .section-title span {
+            background: linear-gradient(90deg, var(--color-accent-pink), var(--color-accent-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
         .section-subtitle {
             font-size: clamp(1.1rem, 4.5vw, 1.5rem);
             margin-bottom: 40px;
-            color: var(--color-text-primary);
+            color: var(--color-text-secondary);
         }
 
         .section-text {
@@ -185,7 +191,7 @@
         .swiper-slide {
             text-align: center;
             font-size: 18px;
-            background: #eee;
+            background: #000;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -199,8 +205,8 @@
         }
         .swiper-button-next,
         .swiper-button-prev {
-            color: var(--color-primary);
-            background-color: rgba(255,255,255,0.5);
+            color: #fff;
+            background-color: rgba(0,0,0,0.3);
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -208,7 +214,7 @@
         }
          .swiper-button-next:hover,
         .swiper-button-prev:hover {
-            background-color: rgba(255,255,255,0.8);
+            background-color: rgba(0,0,0,0.6);
         }
         .swiper-button-next::after,
         .swiper-button-prev::after {
@@ -225,13 +231,14 @@
             text-align: left;
         }
         #problem li {
-            background-color: var(--color-surface);
+            background: var(--color-surface);
+            backdrop-filter: blur(5px);
             padding: 12px 20px;
             margin-bottom: 10px;
-            border-left: 4px solid var(--color-accent); /* 差し色に変更 */
+            border-left: 4px solid var(--color-accent-pink);
             font-weight: bold;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             border-radius: 0 5px 5px 0;
+            color: var(--color-text-primary);
         }
 
         /* --- サクセスストーリー --- */
@@ -242,18 +249,20 @@
             margin-top: 50px;
         }
         .story-card {
-            background-color: var(--color-surface);
+            background: var(--color-surface);
+            backdrop-filter: blur(10px);
             border-radius: 10px;
             overflow: hidden;
             text-align: left;
             transition: transform 0.3s, box-shadow 0.3s;
             display: flex; 
             flex-direction: column; 
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid var(--color-border);
         }
         .story-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-color: var(--color-accent-pink);
         }
         .story-card img {
             width: 100%;
@@ -292,7 +301,7 @@
             font-size: 0.95rem;
         }
         .story-achievement .achievement-icon {
-            color: var(--color-accent); /* 差し色に変更 */
+            color: var(--color-accent-yellow);
             font-size: 1.3rem;
         }
 
@@ -306,18 +315,20 @@
         }
         .benefit-item {
             background: var(--color-surface);
+            backdrop-filter: blur(10px);
             padding: 30px;
             border-radius: 10px;
             border: 1px solid var(--color-border);
-            border-top: 3px solid var(--color-accent); /* 差し色に変更 */
+            border-top: 3px solid var(--color-accent-pink);
             transition: transform 0.3s, box-shadow 0.3s;
         }
         .benefit-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            border-color: var(--color-accent-pink);
         }
         .benefit-item h4 {
-            color: var(--color-primary);
+            color: var(--color-text-primary);
             margin: 0 0 10px;
             font-size: 1.3rem;
             display: flex;
@@ -326,7 +337,7 @@
         }
         .benefit-item .benefit-icon {
             font-size: 1.5rem;
-            color: var(--color-accent); /* 差し色に変更 */
+            color: var(--color-accent-pink);
         }
         
         /* --- 募集要項セクション --- */
@@ -336,7 +347,8 @@
             margin: 40px auto;
             border-collapse: collapse;
             text-align: left;
-            background-color: var(--color-surface);
+            background: var(--color-surface);
+            backdrop-filter: blur(10px);
             border-radius: 10px;
             overflow: hidden;
             border: 1px solid var(--color-border);
@@ -379,8 +391,8 @@
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background-color: var(--color-accent); /* 差し色に変更 */
-            color: var(--color-text-primary); /* 黄色の上なので濃い文字色に */
+            background: linear-gradient(145deg, var(--color-accent-yellow), var(--color-accent-pink));
+            color: var(--color-text-primary);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -389,7 +401,7 @@
             margin: 0 auto 15px;
             z-index: 1;
             position: relative;
-            border: 3px solid var(--color-background);
+            border: 3px solid rgba(0,0,0,0.2);
         }
         .step-item h4 {
             font-size: 1.2rem;
@@ -398,11 +410,11 @@
         
         /* --- クロージング --- */
         #closing {
-            background: linear-gradient(rgba(59, 130, 246, 0.8), rgba(37, 99, 235, 0.8)), url('img/closing-bg.jpg') no-repeat center center/cover;
-            color: var(--color-surface);
+            background: linear-gradient(rgba(17, 24, 39, 0.8), rgba(29, 43, 100, 0.8)), url('img/closing-bg.jpg') no-repeat center center/cover;
+            color: var(--color-text-primary);
         }
         #closing .section-title {
-            color: var(--color-surface);
+            color: var(--color-text-primary);
         }
         #closing .final-message {
             font-family: 'Noto Sans JP', sans-serif;
@@ -411,8 +423,7 @@
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
-            color: #ffffff;
-            opacity: 0.9;
+            color: var(--color-text-secondary);
         }
         #closing .cta-buttons {
             display: flex;
@@ -420,17 +431,12 @@
             align-items: center;
             gap: 15px;
         }
-         #closing .cta-button {
-             background: var(--color-surface);
-             color: var(--color-primary);
-         }
          #closing .cta-button.secondary {
-             background: transparent;
-             border-color: var(--color-surface);
-             color: var(--color-surface);
+             border-color: var(--color-text-primary);
+             color: var(--color-text-primary);
          }
          #closing .cta-button.secondary:hover {
-             background: var(--color-surface);
+             background: var(--color-text-primary);
              color: var(--color-primary);
          }
 
@@ -440,12 +446,12 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(17, 24, 39, 0.8);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             padding: 15px 10px;
             z-index: 1000;
-            box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
@@ -467,9 +473,9 @@
 
         /* --- アニメーション --- */
         @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
-            70% { transform: scale(1.05); box-shadow: 0 0 10px 15px rgba(59, 130, 246, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 10px 15px rgba(236, 72, 153, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(236, 72, 153, 0); }
         }
 
         .animate-on-scroll {
@@ -515,7 +521,7 @@
                 width: auto;
                 display: block;
                 font-weight: bold;
-                background-color: #f9fafb;
+                background-color: rgba(0,0,0,0.2);
             }
             .requirements-table td {
                 display: block;
@@ -576,7 +582,7 @@
         <!-- 3. 問題提起・共感 -->
         <section id="problem">
             <div class="container">
-                <h2 class="section-title animate-on-scroll">今の自分に、<br>満足してる？</h2>
+                <h2 class="section-title animate-on-scroll">今の自分に、<br><span>満足してる？</span></h2>
                 <ul class="animate-on-scroll">
                     <li>毎日同じことの繰り返しで、将来が見えない</li>
                     <li>頑張っても評価されず、給料も上がらない</li>
@@ -594,7 +600,7 @@
         <!-- 4. AIRPureが選ばれる理由 -->
         <section id="reason">
             <div class="container">
-                <h2 class="section-title animate-on-scroll">なぜ、AIRPureは<br>未経験者が育つのか？</h2>
+                <h2 class="section-title animate-on-scroll">なぜ、AIRPureは<br><span>未経験者が育つのか？</span></h2>
                 <h3 class="section-subtitle animate-on-scroll delay-1">それは、どこよりも「人間力」を大切にする店だから。</h3>
                 <p class="section-text animate-on-scroll delay-2">
                     ホストは、単にお酒を飲む仕事ではありません。お客様に最高の時間を提供する、サービス業のプロフェッショナルです。AIRPureでは、ホストである以前に一人の社会人として通用する「礼節」と、人を惹きつける「人間力」を徹底的に教えます。
@@ -609,7 +615,7 @@
         <!-- 5. 未経験からのサクセスストーリー -->
         <section id="success-stories">
             <div class="container">
-                <h2 class="section-title animate-on-scroll">未経験だった僕達が<br>ここで輝けた理由。</h2>
+                <h2 class="section-title animate-on-scroll">未経験だった僕達が<br><span>ここで輝けた理由。</span></h2>
                 <div class="stories-grid">
                     <div class="story-card animate-on-scroll">
                         <img src="img/cast-ai.jpg" alt="藍">
@@ -666,7 +672,7 @@
         <!-- 6. 待遇・福利厚生 -->
         <section id="benefits">
             <div class="container">
-                <h2 class="section-title animate-on-scroll">最高の環境が、<br>君を待っている</h2>
+                <h2 class="section-title animate-on-scroll">最高の環境が、<br><span>君を待っている</span></h2>
                 <div class="benefits-grid">
                     <div class="benefit-item animate-on-scroll">
                         <h4><i class="fa-solid fa-sack-dollar benefit-icon"></i> 入店祝い金10万円贈呈</h4>
@@ -770,7 +776,7 @@
         <!-- 8. 応募の流れ -->
         <section id="steps">
             <div class="container">
-                <h2 class="section-title animate-on-scroll">応募から入店までの<br>流れ</h2>
+                <h2 class="section-title animate-on-scroll">応募から入店までの<br><span>流れ</span></h2>
                 <div class="steps-container">
                     <div class="step-item animate-on-scroll">
                         <div class="step-number">01</div>
