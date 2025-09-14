@@ -6,7 +6,7 @@
     <title>AIRPure - 中洲ホストクラブ求人</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Shippori+Mincho:wght@700;800&display=swap" rel="stylesheet">
     <!-- Font Awesome (for icons) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -16,16 +16,15 @@
     <style>
         /* --- 基本スタイル --- */
         :root {
-            /* 新しい配色パターン (華やか・ダークテーマ) */
-            --color-primary: #3B82F6;       /* プライマリ (ブルー) */
-            --color-accent-pink: #EC4899;   /* アクセント (マゼンタピンク) */
-            --color-accent-yellow: #F59E0B; /* アクセント (サニーイエロー) */
-            --color-background-start: #111827; /* 背景グラデーション開始 (濃紺) */
-            --color-background-end: #1D2B64;   /* 背景グラデーション終了 (紺) */
-            --color-surface: rgba(255, 255, 255, 0.05); /* カード表面色 (グラスモーフィズム) */
-            --color-text-primary: #F9FAFB;   /* メインテキスト (オフホワイト) */
-            --color-text-secondary: #D1D5DB; /* サブテキスト (ライトグレー) */
-            --color-border: rgba(255, 255, 255, 0.1); /* 枠線 */
+            /* 新・爽やか配色パターン */
+            --color-primary: #38BDF8;      /* プライマリ (スカイブルー) */
+            --color-primary-dark: #0EA5E9; /* プライマリ ホバー */
+            --color-accent: #2DD4BF;       /* アクセント (ミントグリーン) */
+            --color-background: #F9FAFB;   /* 背景 (オフホワイト) */
+            --color-surface: #FFFFFF;      /* カード等の表面 (白) */
+            --color-text-primary: #1F2937; /* メインテキスト (ダークグレー) */
+            --color-text-secondary: #6B7280;/* サブテキスト (グレー) */
+            --color-border: #E5E7EB;       /* 枠線 (ライトグレー) */
             --swiper-theme-color: var(--color-primary);
         }
 
@@ -39,7 +38,7 @@
 
         body {
             font-family: 'Noto Sans JP', sans-serif;
-            background: linear-gradient(180deg, var(--color-background-start) 0%, var(--color-background-end) 100%);
+            background-color: var(--color-background);
             color: var(--color-text-primary);
             margin: 0;
             line-height: 1.8;
@@ -71,13 +70,17 @@
             position: relative;
         }
         
+        section:nth-of-type(even) {
+            background-color: var(--color-surface);
+        }
+        
         /* --- CTAボタン --- */
         .cta-button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            background: linear-gradient(145deg, var(--color-accent-pink), var(--color-primary));
+            background: linear-gradient(145deg, var(--color-primary), var(--color-primary-dark));
             color: #FFFFFF;
             font-family: 'Noto Sans JP', sans-serif;
             font-size: 18px;
@@ -87,13 +90,13 @@
             border-radius: 50px;
             margin: 10px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(236, 72, 153, 0.4);
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
             border: none;
         }
 
         .cta-button:hover {
             transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 8px 30px rgba(236, 72, 153, 0.5);
+            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4);
         }
 
         .cta-button.secondary {
@@ -104,55 +107,22 @@
         }
         .cta-button.secondary:hover {
             background: var(--color-primary);
-            color: var(--color-surface);
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+            color: #FFFFFF;
         }
 
 
-        /* --- ファーストビュー --- */
+        /* --- ファーストビュー (修正箇所) --- */
         #hero {
-            height: 100vh;
-            min-height: 700px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-            background: linear-gradient(rgba(17, 24, 39, 0.8), rgba(29, 43, 100, 0.8)), url('img/hero-bg.jpg') no-repeat center center/cover;
-            color: var(--color-text-primary);
+            line-height: 0; 
+            overflow: hidden; /* アニメーションではみ出る部分を隠す */
         }
-        #hero .main-catchphrase {
-            font-size: clamp(2.2rem, 10vw, 4.5rem);
-            line-height: 1.2;
-            text-shadow: 0 0 15px rgba(236, 72, 153, 0.5);
-            margin-bottom: 20px;
-        }
-        #hero .sub-catchphrase {
-            font-family: 'Noto Sans JP', sans-serif;
-            font-size: clamp(0.9rem, 4vw, 1.2rem);
-            font-weight: 300;
-            margin: 20px 0 40px;
-            max-width: 650px;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
-            color: var(--color-text-secondary);
-        }
-        #hero .authorities {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        #hero .authority-item {
-            background: var(--color-surface);
-            backdrop-filter: blur(10px);
-            padding: 8px 20px;
-            border-radius: 5px;
-            border: 1px solid var(--color-accent-yellow);
-            font-weight: bold;
-            color: var(--color-accent-yellow);
-            text-shadow: 0 0 5px rgba(245, 158, 11, 0.5);
+
+        .hero-image {
+            width: 100%; 
+            height: auto; 
+            display: block;
+            /* アニメーションを追加 */
+            animation: heroZoom 20s ease-out forwards;
         }
         
         /* --- セクション共通スタイル --- */
@@ -160,12 +130,9 @@
             font-size: clamp(1.8rem, 7vw, 2.8rem);
             margin-bottom: 20px;
             color: var(--color-text-primary);
-            text-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
         }
         .section-title span {
-            background: linear-gradient(90deg, var(--color-accent-pink), var(--color-accent-yellow));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--color-primary);
         }
 
         .section-subtitle {
@@ -191,7 +158,7 @@
         .swiper-slide {
             text-align: center;
             font-size: 18px;
-            background: #000;
+            background: #eee;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -205,8 +172,8 @@
         }
         .swiper-button-next,
         .swiper-button-prev {
-            color: #fff;
-            background-color: rgba(0,0,0,0.3);
+            color: var(--color-primary);
+            background-color: rgba(255,255,255,0.7);
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -214,7 +181,7 @@
         }
          .swiper-button-next:hover,
         .swiper-button-prev:hover {
-            background-color: rgba(0,0,0,0.6);
+            background-color: rgba(255,255,255,1);
         }
         .swiper-button-next::after,
         .swiper-button-prev::after {
@@ -232,13 +199,13 @@
         }
         #problem li {
             background: var(--color-surface);
-            backdrop-filter: blur(5px);
             padding: 12px 20px;
             margin-bottom: 10px;
-            border-left: 4px solid var(--color-accent-pink);
+            border-left: 4px solid var(--color-accent);
             font-weight: bold;
             border-radius: 0 5px 5px 0;
             color: var(--color-text-primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
         /* --- サクセスストーリー --- */
@@ -250,7 +217,6 @@
         }
         .story-card {
             background: var(--color-surface);
-            backdrop-filter: blur(10px);
             border-radius: 10px;
             overflow: hidden;
             text-align: left;
@@ -258,11 +224,11 @@
             display: flex; 
             flex-direction: column; 
             border: 1px solid var(--color-border);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
         .story-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            border-color: var(--color-accent-pink);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
         }
         .story-card img {
             width: 100%;
@@ -301,7 +267,7 @@
             font-size: 0.95rem;
         }
         .story-achievement .achievement-icon {
-            color: var(--color-accent-yellow);
+            color: var(--color-accent);
             font-size: 1.3rem;
         }
 
@@ -315,17 +281,15 @@
         }
         .benefit-item {
             background: var(--color-surface);
-            backdrop-filter: blur(10px);
             padding: 30px;
             border-radius: 10px;
             border: 1px solid var(--color-border);
-            border-top: 3px solid var(--color-accent-pink);
+            border-top: 3px solid var(--color-accent);
             transition: transform 0.3s, box-shadow 0.3s;
         }
         .benefit-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-            border-color: var(--color-accent-pink);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
         }
         .benefit-item h4 {
             color: var(--color-text-primary);
@@ -337,7 +301,7 @@
         }
         .benefit-item .benefit-icon {
             font-size: 1.5rem;
-            color: var(--color-accent-pink);
+            color: var(--color-accent);
         }
         
         /* --- 募集要項セクション --- */
@@ -348,7 +312,6 @@
             border-collapse: collapse;
             text-align: left;
             background: var(--color-surface);
-            backdrop-filter: blur(10px);
             border-radius: 10px;
             overflow: hidden;
             border: 1px solid var(--color-border);
@@ -391,8 +354,8 @@
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background: linear-gradient(145deg, var(--color-accent-yellow), var(--color-accent-pink));
-            color: var(--color-text-primary);
+            background: linear-gradient(145deg, var(--color-accent), var(--color-primary));
+            color: var(--color-surface);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -401,20 +364,20 @@
             margin: 0 auto 15px;
             z-index: 1;
             position: relative;
-            border: 3px solid rgba(0,0,0,0.2);
+            border: 3px solid var(--color-background);
         }
         .step-item h4 {
             font-size: 1.2rem;
-            color: var(--color-primary);
+            color: var(--color-text-primary);
         }
         
         /* --- クロージング --- */
         #closing {
-            background: linear-gradient(rgba(17, 24, 39, 0.8), rgba(29, 43, 100, 0.8)), url('img/closing-bg.jpg') no-repeat center center/cover;
-            color: var(--color-text-primary);
+            background: var(--color-primary);
+            color: var(--color-surface);
         }
         #closing .section-title {
-            color: var(--color-text-primary);
+            color: var(--color-surface);
         }
         #closing .final-message {
             font-family: 'Noto Sans JP', sans-serif;
@@ -423,7 +386,8 @@
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
-            color: var(--color-text-secondary);
+            color: var(--color-surface);
+            opacity: 0.9;
         }
         #closing .cta-buttons {
             display: flex;
@@ -431,12 +395,22 @@
             align-items: center;
             gap: 15px;
         }
+         #closing .cta-button {
+             background: var(--color-surface);
+             color: var(--color-primary);
+             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+         }
+         #closing .cta-button:hover {
+             box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+         }
          #closing .cta-button.secondary {
-             border-color: var(--color-text-primary);
-             color: var(--color-text-primary);
+             background: transparent;
+             border-color: var(--color-surface);
+             color: var(--color-surface);
+             box-shadow: none;
          }
          #closing .cta-button.secondary:hover {
-             background: var(--color-text-primary);
+             background: var(--color-surface);
              color: var(--color-primary);
          }
 
@@ -446,12 +420,12 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            background: rgba(17, 24, 39, 0.8);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             padding: 15px 10px;
             z-index: 1000;
-            box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
@@ -473,9 +447,19 @@
 
         /* --- アニメーション --- */
         @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.7); }
-            70% { transform: scale(1.05); box-shadow: 0 0 10px 15px rgba(236, 72, 153, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(236, 72, 153, 0); }
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 10px 15px rgba(56, 189, 248, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
+        }
+        
+        /* ヒーローセクションのズームアニメーション */
+        @keyframes heroZoom {
+            from {
+                transform: scale(1);
+            }
+            to {
+                transform: scale(1.05);
+            }
         }
 
         .animate-on-scroll {
@@ -494,7 +478,6 @@
         /* --- レスポンシブ対応 --- */
         @media (max-width: 768px) {
             body { padding-bottom: 80px; }
-            #hero .authorities { flex-direction: column; gap: 10px; }
             .container { padding: 60px 15px; }
             #success-stories .stories-grid { grid-template-columns: 1fr; }
             
@@ -521,7 +504,7 @@
                 width: auto;
                 display: block;
                 font-weight: bold;
-                background-color: rgba(0,0,0,0.2);
+                background-color: var(--color-background);
             }
             .requirements-table td {
                 display: block;
@@ -541,20 +524,9 @@
 </head>
 <body>
 
-    <!-- 1. ファーストビュー -->
+    <!-- 1. ファーストビュー (修正箇所) -->
     <header id="hero">
-        <h1 class="main-catchphrase">
-            <span class="no-wrap">職業、イケメン。</span><br>はじめませんか？
-        </h1>
-        <p class="sub-catchphrase">
-            ただ稼ぐだけじゃない。人としての魅力を磨き、人間力で未来を掴む。<br>
-            中洲から全国へ。未経験の君が主役になれる場所が、ここにある。
-        </p>
-        <div class="authorities">
-            <span class="authority-item">全国展開AIR GROUP</span>
-            <span class="authority-item">未経験者育成実績多数</span>
-            <span class="authority-item">入店祝い金10万円</span>
-        </div>
+        <img src="img/hero-bg.jpg" alt="AIRPureの豪華な店内" class="hero-image">
     </header>
 
     <main>
@@ -762,7 +734,7 @@
                          </tr>
                          <tr>
                              <td>連絡先</td>
-                             <td>092-402-1516</td>
+                             <td>092-402-1616</td>
                          </tr>
                          <tr>
                              <td>運営</td>
@@ -814,7 +786,7 @@
             </p>
             <div class="cta-buttons">
                 <a href="https://lin.ee/XGWWoei" class="cta-button"><i class="fa-brands fa-line"></i> LINEで応募</a>
-                <a href="tel:0924021516" class="cta-button secondary"><i class="fa-solid fa-phone"></i> 電話で応募</a>
+                <a href="tel:0924021616" class="cta-button secondary"><i class="fa-solid fa-phone"></i> 電話で応募</a>
             </div>
         </div>
     </footer>
@@ -822,7 +794,7 @@
     <!-- 固定CTAバー -->
     <div class="fixed-cta-bar">
         <a href="https://lin.ee/XGWWoei" class="cta-button"><i class="fa-brands fa-line"></i> LINEで応募</a>
-        <a href="tel:0924021516" class="cta-button secondary"><i class="fa-solid fa-phone"></i> 電話で応募</a>
+        <a href="tel:0924021616" class="cta-button secondary"><i class="fa-solid fa-phone"></i> 電話で応募</a>
     </div>
 
     <!-- Swiper's JS -->
